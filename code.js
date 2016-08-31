@@ -86,10 +86,85 @@ function longestWord(str)
     var words = str.match(/\w[a-z]{0,}/gi);
     var longest = words[0];
 
-    for(var i = 1 ; i < words[i].length ; i++)
-    {
+    for(var i = 1 ; i < words[i].length ; i++) {
       // If the length of result is less than the length of stringToArray[i] then set the result variable to  stringToArray[i]
-
+      if(words[i].length > longest.length) {
+        longest = words[i];
+      }
     }
     return longest;
 }
+
+longestWord("Words can get longer and longest")
+
+
+/*
+Functions 2.6
+Below we have a function called sum that will take an unknown number of arguments and loop over them. Inside the for loop add each argument to the total. Example sum(1,2,3,4) should equal 10
+*/
+
+
+function sum() {
+    var i,
+        n = arguments.length,
+        total = 0;
+    for(i = 0; i < n; i++) {
+      total = total + arguments[i];
+    }
+    return total
+
+}
+
+sum(1,2,3,4)
+
+/*
+Functions 3.1
+This function should return true if there are an equal number of "x"s and "o"s. Inside your for loop, you will need to check if the str[i] is either an "x" or an "o". If it is an "x", push it to the arrayX, and if it is an "o", push it to the arrayO.
+*/
+
+
+var str = 'oxooxxxxooxo'
+
+function exOh(str) {
+    var  arrayX = [],
+         arrayO = [];
+
+    for(var i = 0; i < str.length; i++){
+      if(exOh[i]==="o") {
+        arrayO.push(i);
+      }
+      if(exOh[i]==="x") {
+        arrayX.push(i);
+      }
+    }
+
+    if(arrayX.length === arrayO.length) return true;
+    return false
+
+}
+
+exOh(str)
+
+
+
+/*
+Functions 3.2
+Write a function that takes a string parameter and counts how many vowels the string has. Return the count value.
+*/
+
+
+function vowelCount(str1)
+{
+    var vowels = 'aeiouAEIOU';
+    var count = 0;
+    var vowelSplit = str1.split('');
+    for(var i = 0; i < str1.length; i++)
+    {
+    	for(var j = 0; j < vowels.length; j++)
+    		if(str1[i] === vowels[j]) {
+    			++count;
+    		}
+    }
+    return count;
+}
+vowelCount('followers')
