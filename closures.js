@@ -151,7 +151,7 @@ var module = (function() {
 
 
      return {
-      var publicMethod = function(name, age, location) {
+       publicMethod: function(name, age, location){
         return privateMethod(name, age, location);
       }
      };
@@ -167,6 +167,23 @@ var module = (function() {
  Create a anonymous function that takes num2 parameter and then returns num1 * num2
 */
 
+var numberFactory = function(num1) {
+    return function(num2) {
+      return num1 * num2;
+    }
+
+}
+
+
+// Here we set the num1 value to 5
+var times5 = numberFactory(5);
+
+
+// Because of closure the numberFactory remembers the value of of num 1 which is being set on the variable times5 when we call numberFactory(5);
+
+times5(3) // This would return 15
+times5(4) // This would return 20
+
 
  /*
  Closure 2.4
@@ -174,9 +191,41 @@ var module = (function() {
  Create a innerFunction that takes a name2 as a parameter and returns name1 + name2;
 */
 
+var nameTester = function(name1) {
+  var innerFunction = function(name2) {
+    return name1 + name2;
+  }
+
+    return innerFunction
+};
+
+ // Create a variable called newName that is equal to nameTester with an argument of 'sally'
+var newName = nameTester('sally');
+newName('smith') // should return sallysmith
 
  /*
  Closure 2.5
 
  Inside the smoothy function create a blend function that takes fruit and yogurt as parameters and returns fruit + yogurt
  */
+
+
+ var smoothy = (function() {
+
+
+  // Create a blend function that returns fruit + yogurt
+  var blend = function(fruit, yogurt) {
+    return fruit + yogurt;
+  }
+
+
+
+     return {
+         makeSmoothy: function (fruit,yogurt) {
+             return blend(fruit,yogurt);
+         }
+     };
+
+ })();
+
+  smoothy.makeSmoothy('apple', 'strawberry');
